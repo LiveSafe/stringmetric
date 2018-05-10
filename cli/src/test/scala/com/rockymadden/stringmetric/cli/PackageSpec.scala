@@ -1,6 +1,8 @@
 package com.rockymadden.stringmetric.cli
 
-object PackageSpec extends org.specs2.mutable.SpecificationWithJUnit {
+import org.specs2.mutable.Specification
+
+object PackageSpec extends Specification {
 	"OptionMap apply()" should {
 		"return populated Map with single valid double dashed option" in {
 			val opts = OptionMap("--help")
