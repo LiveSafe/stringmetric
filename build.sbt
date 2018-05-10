@@ -21,7 +21,7 @@ lazy val root = Project("stringmetric", file("."))
 
 val specs2deps = Seq(
   "org.specs2" %% "specs2-core" % "2.5.0" % "test",
-  "org.specs2" %% "specs2-junit" % "2.5.0" % "test",
+  "org.specs2" %% "specs2-junit" % "2.5.0" % "test"
 )
 
 lazy val core: Project = Project("core", file("core"),
