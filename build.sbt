@@ -34,7 +34,7 @@ lazy val cli: Project = Project("cli", file("cli"),
 	)
 ).dependsOn(core)
 
-credentials += Credentials(Path.userHome / ".livesafe" / "credentials.properties")
+credentials in ThisBuild += Credentials(Path.userHome / ".livesafe" / "credentials.properties")
 
 publishMavenStyle in ThisBuild := true
 publishTo in ThisBuild := Some("LiveSafe Internal (Maven, local)" at "https://livesafe.jfrog.io/livesafe/livesafe-internal-maven-local")
