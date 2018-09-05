@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    steps:
+      - checkout
+      - run: sh .circleci/write-livesafe-credentials-properties.sh
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "dependencies.sbt" }}
+            - v1-dependencies-
+
+      - run:
+          name: "Compile"
+          command: cat /dev/null | sbt +test:compile
+
+      - save_cache:
+          paths:
+            - ~/.ivy2
+            - ~/.m2
+            - ~/.sbt
+          key: v1-dependencies-{{ checksum "dependencies.sbt" }}
+
+      - run:
+          name: "Test"
+          command: cat /dev/null | sbt +test
+
+      - run:
+          name: "Publish"
+          command: cat /dev/null | sbt +publish
