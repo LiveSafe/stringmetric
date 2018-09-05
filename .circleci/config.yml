@@ -10,7 +10,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.sbt" }}-{{ checksum "project/plugin.sbt" }}
+            - v1-dependencies-{{ checksum "build.sbt" }}-{{ checksum "project/plugins.sbt" }}
             - v1-dependencies-
 
       - run:
@@ -22,7 +22,7 @@ jobs:
             - ~/.ivy2
             - ~/.m2
             - ~/.sbt
-          key: v1-dependencies-{{ checksum "build.sbt" }}-{{ checksum "project/plugin.sbt" }}
+          key: v1-dependencies-{{ checksum "build.sbt" }}-{{ checksum "project/plugins.sbt" }}
 
       - run:
           name: "Test"
