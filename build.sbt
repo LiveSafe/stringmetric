@@ -12,8 +12,7 @@ lazy val root = Project("stringmetric", file("."))
 		publishArtifact in Test := false,
 		releaseCrossBuild := true,
 		crossScalaVersions := Seq("2.12.5", "2.11.8"),
-		crossVersion := CrossVersion.binary,
-		version := "0.28.0"
+		crossVersion := CrossVersion.binary
 	)
 	.aggregate(core, cli)
 
