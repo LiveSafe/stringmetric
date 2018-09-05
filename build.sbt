@@ -2,7 +2,6 @@
 //buildInfoKeys := Seq(name, version, scalaVersion, sbtVersion)
 //buildInfoPackage := "com.livesafe.common"
 //buildInfoUsePackageAsPath := true
-s3region := com.amazonaws.regions.Regions.US_EAST_1
 lazy val root = Project("stringmetric", file("."))
 	.settings(
 		name := "stringmetric",
@@ -13,9 +12,7 @@ lazy val root = Project("stringmetric", file("."))
 		publishArtifact in Test := false,
 		releaseCrossBuild := true,
 		crossScalaVersions := Seq("2.12.5", "2.11.8"),
-		publishTo := Some(s3resolver.value("LiveSafe", s3("livesafe-artifacts/ivy2")).withIvyPatterns),
-		crossVersion := CrossVersion.binary,
-		version := "0.28.0"
+		crossVersion := CrossVersion.binary
 	)
 	.aggregate(core, cli)
 
@@ -36,3 +33,9 @@ lazy val cli: Project = Project("cli", file("cli"),
 		name := "stringmetric-cli"
 	)
 ).dependsOn(core)
+
+credentials in ThisBuild += Credentials(Path.userHome / ".livesafe" / "credentials.properties")
+
+publishMavenStyle in ThisBuild := true
+publishTo in ThisBuild := Some("LiveSafe Internal (Maven, local)" at "https://livesafe.jfrog.io/livesafe/livesafe-internal-maven-local")
+resolvers in ThisBuild += "LiveSafe Engineering (Maven)" at "https://livesafe.jfrog.io/livesafe/livesafe-engineering-generic"
