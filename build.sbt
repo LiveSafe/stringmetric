@@ -36,7 +36,6 @@ lazy val cli: Project = Project("cli", file("cli"),
 
 credentials += Credentials(Path.userHome / ".livesafe" / "credentials.properties")
 
-val liveSafeInternalMavenLocalResolver = "LiveSafe Internal (Maven, local)" at "https://livesafe.jfrog.io/livesafe/livesafe-internal-maven-local"
 publishMavenStyle in ThisBuild := true
-publishTo in ThisBuild := Some(liveSafeInternalMavenLocalResolver)
-resolvers in ThisBuild += liveSafeInternalMavenLocalResolver
+publishTo in ThisBuild := Some("LiveSafe Internal (Maven, local)" at "https://livesafe.jfrog.io/livesafe/livesafe-internal-maven-local")
+resolvers in ThisBuild += "LiveSafe Engineering (Maven)" at "https://livesafe.jfrog.io/livesafe/livesafe-engineering-generic"
