@@ -6,7 +6,6 @@ lazy val root = Project("stringmetric", file("."))
 	.settings(
 		name := "stringmetric",
 		organization := "livesafe",
-		publishMavenStyle := false,
 		scalaVersion := "2.12.5",
 		crossPaths := true,
 		publishArtifact in Test := false,
