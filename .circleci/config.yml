@@ -6,7 +6,6 @@ jobs:
 
     steps:
       - checkout
-      - run: sh .circleci/write-livesafe-credentials-properties.sh
 
       - restore_cache:
           keys:

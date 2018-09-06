@@ -33,7 +33,9 @@ lazy val cli: Project = Project("cli", file("cli"),
 	)
 ).dependsOn(core)
 
-credentials in ThisBuild += Credentials(Path.userHome / ".livesafe" / "credentials.properties")
+credentials in ThisBuild ++=
+	(for (un <- sys.env.get("LIVESAFE_ARTIFACTORY_USERNAME"); pw <- sys.env.get("LIVESAFE_ARTIFACTORY_PASSWORD")) yield Credentials("Artifactory Realm", "livesafe.jfrog.io", un, pw)).toList :+
+		Credentials(Path.userHome / ".livesafe" / "credentials.properties")
 
 publishMavenStyle in ThisBuild := true
 publishTo in ThisBuild := Some("LiveSafe Internal (Maven, local)" at "https://livesafe.jfrog.io/livesafe/livesafe-internal-maven-local")
